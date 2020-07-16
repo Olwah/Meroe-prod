@@ -129,7 +129,7 @@ const openNav = () => {
     if (!elements.header.classList.contains('scroll-down')) {
         setTimeout( () => elements.navMenuOpenArrow.classList.remove('scroll-down'), 700);
     }
-    setTimeout(animateNavList, 800);
+    setTimeout(animateNavList, 300);
 };
 
 const closeNav = () => {
