@@ -5,6 +5,7 @@ import * as headerView from './views/headerView';
 import * as spotlightView from './views/spotlightView';
 import { slideshowItems } from './models/Slideshow';
 */
+//import { PageFlip } from 'page-flip';
 
 // TESTING
 
@@ -24,7 +25,7 @@ const elements = {
     headerSlides: document.querySelector('.header__slideshow-slides'),
     headerSlideshowDots: document.querySelector('.header__slideshow-dots'),
     spotlightPieces: document.querySelector('.spotlight__pieces'),
-    spotlightPiece: document.querySelector('.spotlight__piece')
+    spotlightPiece: document.querySelector('.spotlight__piece'),
 };
 
 const elementStrings = {
@@ -35,9 +36,8 @@ const elementStrings = {
     spotlightZoom: 'spotlight__zoom',
     spotlightImg: 'spotlight__img',
     spotlightTitle: 'spotlight__title',
-    spotlightDesc: 'spotlight__description'
+    spotlightDesc: 'spotlight__description',
 };
-
 
 /**** CONTENT OBJECTS ****/
 const spotlightItems = {
@@ -45,62 +45,151 @@ const spotlightItems = {
         id: 'spotlight-1',
         img: 'img/Frontpage1.jpg',
         title: 'Spotlight Piece 1',
-        description: 'Spotlight Piece 1'
+        description: 'Spotlight Piece 1',
     },
     1: {
         id: 'spotlight-2',
         img: 'img/Frontpage2.jpg',
         title: 'Spotlight Piece 2',
-        description: 'Spotlight Piece 2'
+        description: 'Spotlight Piece 2',
     },
     2: {
         id: 'spotlight-3',
         img: 'img/Frontpage3.jpg',
         title: 'Spotlight Piece 3',
-        description: 'Spotlight Piece 3'
+        description: 'Spotlight Piece 3',
     },
     3: {
         id: 'spotlight-4',
         img: 'img/Frontpage4.jpg',
         title: 'Spotlight Piece 4',
-        description: 'Spotlight Piece 4'
+        description: 'Spotlight Piece 4',
     },
     4: {
         id: 'spotlight-5',
         img: 'img/Frontpage5.jpg',
         title: 'Spotlight Piece 5',
-        description: 'Spotlight Piece 5'
+        description: 'Spotlight Piece 5',
     },
     5: {
         id: 'spotlight-6',
         img: 'img/Frontpage6.jpg',
         title: 'Spotlight Piece 6',
-        description: 'Spotlight Piece 6'
+        description: 'Spotlight Piece 6',
     },
     6: {
         id: 'spotlight-7',
         img: 'img/Nouveau_web.jpg',
         title: 'Spotlight Piece 7',
-        description: 'Spotlight Piece 7'
+        description: 'Spotlight Piece 7',
     },
     7: {
         id: 'spotlight-8',
         img: 'img/vacancysubmissionweb.jpg',
         title: 'Spotlight Piece 8',
-        description: 'Spotlight Piece 8'
+        description: 'Spotlight Piece 8',
     },
     8: {
         id: 'spotlight-9',
         img: 'img/WillGraham.jpg',
         title: 'Spotlight Piece 9',
-        description: 'Spotlight Piece 9'
-    }
+        description: 'Spotlight Piece 9',
+    },
 };
 
+const galleryItems = {
+    0: {
+        id: '1',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 1',
+        description: 'Charity Piece 1',
+    },
+    1: {
+        id: '2',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 2',
+        description: 'Charity Piece 2',
+    },
+    2: {
+        id: '3',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 3',
+        description: 'Charity Piece 3',
+    },
+    3: {
+        id: '4',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 4',
+        description: 'Charity Piece 4',
+    },
+    4: {
+        id: '5',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 5',
+        description: 'Charity Piece 5',
+    },
+    5: {
+        id: '6',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 6',
+        description: 'Charity Piece 6',
+    },
+    6: {
+        id: '7',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 7',
+        description: 'Charity Piece 7',
+    },
+    7: {
+        id: '8',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 8',
+        description: 'Charity Piece 8',
+    },
+    8: {
+        id: '9',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 9',
+        description: 'Charity Piece 9',
+    },
+    9: {
+        id: '10',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 10',
+        description: 'Charity Piece 10',
+    },
+    10: {
+        id: '11',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 11',
+        description: 'Charity Piece 11',
+    },
+    11: {
+        id: '12',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 12',
+        description: 'Charity Piece 12',
+    },
+    12: {
+        id: '13',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 13',
+        description: 'Charity Piece 13',
+    },
+    13: {
+        id: '14',
+        img: 'img/Nouveau_web.jpg',
+        title: 'Charity Piece 14',
+        description: 'Charity Piece 14',
+    },
+};
 
 /** NAVIGATION MENU **/
 const toggleNav = () => {
-    if (!elements.navMenuOpenArrow.classList.contains('animate-nav-arrow') && (!elements.navMenuOpenArrow.classList.contains('animate-nav-arrow-reverse'))) {
+    if (
+        !elements.navMenuOpenArrow.classList.contains('animate-nav-arrow') &&
+        !elements.navMenuOpenArrow.classList.contains('animate-nav-arrow-reverse')
+    ) {
         openNav();
     } else if (elements.navMenuOpenArrow.classList.contains('animate-nav-arrow')) {
         closeNav();
@@ -112,47 +201,46 @@ const toggleNav = () => {
 const openNav = () => {
     // Open nav arrow animation
     if (elements.navMenuOpenArrow.classList.contains('animate-nav-arrow')) {
-    elements.navMenuOpenArrow.classList.remove('animate-nav-arrow');
-    elements.navMenuOpenArrow.classList.add('animate-nav-arrow-reverse');
+        elements.navMenuOpenArrow.classList.remove('animate-nav-arrow');
+        elements.navMenuOpenArrow.classList.add('animate-nav-arrow-reverse');
     } else {
-    elements.navMenuOpenArrow.classList.remove('animate-nav-arrow-reverse');
-    elements.navMenuOpenArrow.classList.add('animate-nav-arrow');
+        elements.navMenuOpenArrow.classList.remove('animate-nav-arrow-reverse');
+        elements.navMenuOpenArrow.classList.add('animate-nav-arrow');
     }
 
-    [elements.headerTitle, elements.navMenu, elements.navContent].forEach(el => el.classList.add('active'));
+    [elements.headerTitle, elements.navMenu, elements.navContent].forEach((el) => el.classList.add('active'));
 
-    setTimeout( () => {
-    elements.header.classList.remove('scroll-up');
-    elements.header.classList.remove('scroll-down');
+    setTimeout(() => {
+        elements.header.classList.remove('scroll-up');
+        elements.header.classList.remove('scroll-down');
     }, 550);
 
     if (!elements.header.classList.contains('scroll-down')) {
-        setTimeout( () => elements.navMenuOpenArrow.classList.remove('scroll-down'), 700);
+        setTimeout(() => elements.navMenuOpenArrow.classList.remove('scroll-down'), 700);
     }
-    setTimeout(animateNavList, 800);
+    setTimeout(animateNavList, 300);
 };
 
 const closeNav = () => {
     animateNavList();
-    setTimeout( () => {
+    setTimeout(() => {
         elements.navMenuOpenArrow.classList.remove('animate-nav-arrow');
         elements.navMenuOpenArrow.classList.add('animate-nav-arrow-reverse');
-        setTimeout( () => elements.navMenuOpenArrow.classList.remove('scroll-down'), 700);
-        [elements.headerTitle, elements.navMenu, elements.navContent].forEach(el => el.classList.remove('active'));
+        setTimeout(() => elements.navMenuOpenArrow.classList.remove('scroll-down'), 700);
+        [elements.headerTitle, elements.navMenu, elements.navContent].forEach((el) => el.classList.remove('active'));
     }, 300);
 };
 
 const animateNavList = () => {
     const navList = document.querySelectorAll(`.${elementStrings.navMenuListItem}`);
     for (let i = 0; i < navList.length; i++) {
-        navList[i].classList.toggle(`${elementStrings.navMenuListItem}--${i + 1}`);
+        navList[i].classList.toggle('active');
     }
 };
 
 document.getElementById('menu-open').addEventListener('click', toggleNav);
 elements.navMenuInital.addEventListener('click', toggleNav);
 document.getElementById('menu-close').addEventListener('click', closeNav);
-
 
 /**** HEADER ****/
 const scrollUp = 'scroll-up';
@@ -166,18 +254,17 @@ window.addEventListener('scroll', () => {
         return;
     }
 
-    const body = document.body;
     const focus = document.getElementById('focus');
     if (elements.navMenu.classList.contains('active')) {
-        elements.header.classList.remove(scrollDown);  
+        elements.header.classList.remove(scrollDown);
         elements.header.classList.remove(scrollUp);
         return;
     } else if (focus) {
         elements.header.classList.remove(scrollUp);
         elements.header.classList.add(scrollDown);
-        return; 
+        return;
     }
-     
+
     if (currentScroll > lastScroll && !elements.header.classList.contains(scrollDown)) {
         // down
         elements.header.classList.remove(scrollUp);
@@ -206,7 +293,7 @@ const createSpotlightHTML = (id, img, title, description) => {
     <div class="spotlight__piece" id="spotlight-${id}">
         <img src="${img}" class="spotlight__img" alt="${title}">
         <div class="spotlight__piece-info">
-            <h2 class="spotlight__title heading-2">${title}</h2>
+            <h2 class="spotlight__title heading-4">${title}</h2>
             <p class="spotlight__description">${description}</p>
             <svg class="spotlight__zoom">
                 <use xlink:href="img/sprite.svg#icon-plus"></use>
@@ -217,13 +304,13 @@ const createSpotlightHTML = (id, img, title, description) => {
     elements.spotlightPieces.insertAdjacentHTML('beforeend', markup);
 };
 
+/**** FOCUS ITEM ****/
 const openFocus = (e) => {
     if (e.target.matches(`.${elementStrings.spotlightZoom}, .${elementStrings.spotlightZoom} *`)) {
-        
         // Get clicked item's img source and convert to relative path
         const imgSrcArr = e.target.closest(`.${elementStrings.spotlightPiece}`).firstElementChild.src.split('/');
         const imgSrcRelative = `img/${imgSrcArr[imgSrcArr.length - 1]}`;
-        
+
         // Get clicked item's information
         const pieceTitle = e.target.closest('svg').parentElement.firstElementChild.textContent;
         const pieceDesc = e.target.closest('svg').parentElement.firstElementChild.nextElementSibling.textContent;
@@ -250,7 +337,10 @@ const closeFocus = () => {
     const focus = document.getElementById('focus');
 
     // Remove 'focus' from DOM
-    focus.remove();
+    focus.classList.remove('appear');
+    setTimeout(() => {
+        focus.remove();
+    }, 1000);
 
     // Remove 'focus-active' class from 'container
     const container = document.getElementById('container');
@@ -267,7 +357,7 @@ const createFocusHTML = (img, title, desc) => {
             <img src="${img}" class="focus__img" alt="${title}">
         </div>
         <div class="focus__piece-info">
-            <h2 class="focus__title heading-2">${title}</h2>
+            <h2 class="focus__title heading-3">${title}</h2>
             <p class="focus__description">${desc}</p>
             <h3 class="focus__logo">Meroë</h3>
         </div>
@@ -276,18 +366,54 @@ const createFocusHTML = (img, title, desc) => {
     document.getElementById('container').insertAdjacentHTML('beforebegin', markup);
 };
 
-// Create Ppotlight items on load
+// Create Spotlight items on load
 renderSpotlightItems(spotlightItems);
 
 // Assign event listeners to all spotlight elements
 const spotlightElements = document.querySelectorAll(`.${elementStrings.spotlightPiece}`);
-spotlightElements.forEach(el => {
+spotlightElements.forEach((el) => {
     el.addEventListener('click', openFocus);
 });
 
+/**** CHARITY SECTION ****/
+const renderGalleryItems = (item) => {
+    const galleryItemsLength = Object.keys(galleryItems).length;
+    for (let i = 0; i < galleryItemsLength; i++) {
+        createGalleryHTML(item[i].id, item[i].img, item[i].title);
+    }
+};
 
+const createGalleryHTML = (id, img, title) => {
+    const markup = `
+    <figure class="gallery__item gallery__item--${id}">
+        <img src="${img}" alt="${title}" class="gallery__img">
+    </figure>
+    `;
+    document.querySelector('.gallery__items').insertAdjacentHTML('beforeend', markup);
+};
 
+// Create Gallery items on load
+renderGalleryItems(galleryItems);
 
+/**** SKETCHBOOK ****/
+const bookPages = {
+    width: 1000,
+    height: 400,
+    maxShadowOpacity: 0.5,
+};
+
+/*
+document.addEventListener('DOMContentLoaded', function () {
+    const sketchbook = document.getElementById('sketchbook__book');
+    //const pageFlip = new PageFlip(sketchbook, bookPages);
+    const pageFlip = new PageFlip(sketchbook, {
+        width: 1000,
+        height: 400,
+        maxShadowOpacity: 0.5,
+    });
+    pageFlip.loadFromImages(['img/Frontpage2.jpg', 'img/Frontpage3.jpg', 'img/Frontpage4.jpg', 'img/Frontpage5.jpg']);
+});
+*/
 
 /**** UPDATE FORM ****/
 /** SLIDESHOW **/
