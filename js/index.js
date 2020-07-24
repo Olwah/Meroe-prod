@@ -5,7 +5,6 @@ import * as headerView from './views/headerView';
 import * as spotlightView from './views/spotlightView';
 import { slideshowItems } from './models/Slideshow';
 */
-//import { PageFlip } from 'page-flip';
 
 // TESTING
 
@@ -100,37 +99,37 @@ const spotlightItems = {
 const galleryItems = {
     0: {
         id: '1',
-        img: 'img/Nouveau_web.jpg',
+        img: 'img/7_Postcard_Front.jpg',
         title: 'Charity Piece 1',
         description: 'Charity Piece 1',
     },
     1: {
         id: '2',
-        img: 'img/Nouveau_web.jpg',
+        img: 'img/9_Postcard_Front.jpg',
         title: 'Charity Piece 2',
         description: 'Charity Piece 2',
     },
     2: {
         id: '3',
-        img: 'img/Nouveau_web.jpg',
+        img: 'img/11_Postcard_Front.jpg',
         title: 'Charity Piece 3',
         description: 'Charity Piece 3',
     },
     3: {
         id: '4',
-        img: 'img/Nouveau_web.jpg',
+        img: 'img/16_Postcard_Front.jpg',
         title: 'Charity Piece 4',
         description: 'Charity Piece 4',
     },
     4: {
         id: '5',
-        img: 'img/Nouveau_web.jpg',
+        img: 'img/2020_1.jpg',
         title: 'Charity Piece 5',
         description: 'Charity Piece 5',
     },
     5: {
         id: '6',
-        img: 'img/Nouveau_web.jpg',
+        img: 'img/2020_7.jpg',
         title: 'Charity Piece 6',
         description: 'Charity Piece 6',
     },
@@ -181,6 +180,33 @@ const galleryItems = {
         img: 'img/Nouveau_web.jpg',
         title: 'Charity Piece 14',
         description: 'Charity Piece 14',
+    },
+};
+
+const sketchbookItems = {
+    1: {
+        imageLeft: 'img/Frontpage1.jpg',
+        titleLeft: 'Sketchbook Page 1',
+        imageRight: 'img/Frontpage2.jpg',
+        titleRight: 'Sketchbook Page 2',
+    },
+    2: {
+        imageLeft: 'img/Frontpage3.jpg',
+        titleLeft: 'Sketchbook Page 3',
+        imageRight: 'img/Frontpage4.jpg',
+        titleRight: 'Sketchbook Page 4',
+    },
+    3: {
+        imageLeft: 'img/Frontpage5.jpg',
+        titleLeft: 'Sketchbook Page 5',
+        imageRight: 'img/Frontpage6.jpg',
+        titleRight: 'Sketchbook Page 6',
+    },
+    4: {
+        imageLeft: 'img/Frontpage7.jpg',
+        titleLeft: 'Sketchbook Page 7',
+        imageRight: 'img/Nouveau_web.jpg',
+        titleRight: 'Sketchbook Page 8',
     },
 };
 
@@ -284,13 +310,13 @@ const renderSpotlightItems = (item) => {
     // Use 'keys' function to calculate length of an object
     const spotlightItemsLength = Object.keys(spotlightItems).length;
     for (let i = 0; i < spotlightItemsLength; i++) {
-        createSpotlightHTML(item[i].id, item[i].img, item[i].title, item[i].description);
+        createSpotlightHtml(item[i].id, item[i].img, item[i].title, item[i].description);
     }
 };
 
-const createSpotlightHTML = (id, img, title, description) => {
+const createSpotlightHtml = (id, img, title, description) => {
     const markup = `
-    <div class="spotlight__piece" id="spotlight-${id}">
+    <div class="spotlight__piece" id="${id}">
         <img src="${img}" class="spotlight__img" alt="${title}">
         <div class="spotlight__piece-info">
             <h2 class="spotlight__title heading-4">${title}</h2>
@@ -316,7 +342,7 @@ const openFocus = (e) => {
         const pieceDesc = e.target.closest('svg').parentElement.firstElementChild.nextElementSibling.textContent;
 
         // Create HTML and insert into the DOM
-        createFocusHTML(imgSrcRelative, pieceTitle, pieceDesc);
+        createFocusHtml(imgSrcRelative, pieceTitle, pieceDesc);
 
         // Add second class to 'focus' element to enable transition
         const focus = document.getElementById('focus');
@@ -347,7 +373,7 @@ const closeFocus = () => {
     container.classList.remove('focus-active');
 };
 
-const createFocusHTML = (img, title, desc) => {
+const createFocusHtml = (img, title, desc) => {
     const markup = `
     <div class="focus" id="focus">
         <div class="focus__close">
@@ -369,6 +395,15 @@ const createFocusHTML = (img, title, desc) => {
 // Create Spotlight items on load
 renderSpotlightItems(spotlightItems);
 
+/**** TESTING ****/
+function noBoxShadow() {
+    for (let i = 0; i < 3; i++) {
+        const spots = document.querySelectorAll('.spotlight__piece');
+        spots[i].style.boxShadow = 'none';
+    }
+}
+noBoxShadow();
+
 // Assign event listeners to all spotlight elements
 const spotlightElements = document.querySelectorAll(`.${elementStrings.spotlightPiece}`);
 spotlightElements.forEach((el) => {
@@ -379,11 +414,11 @@ spotlightElements.forEach((el) => {
 const renderGalleryItems = (item) => {
     const galleryItemsLength = Object.keys(galleryItems).length;
     for (let i = 0; i < galleryItemsLength; i++) {
-        createGalleryHTML(item[i].id, item[i].img, item[i].title);
+        createGalleryHtml(item[i].id, item[i].img, item[i].title);
     }
 };
 
-const createGalleryHTML = (id, img, title) => {
+const createGalleryHtml = (id, img, title) => {
     const markup = `
     <figure class="gallery__item gallery__item--${id}">
         <img src="${img}" alt="${title}" class="gallery__img">
@@ -396,24 +431,208 @@ const createGalleryHTML = (id, img, title) => {
 renderGalleryItems(galleryItems);
 
 /**** SKETCHBOOK ****/
-const bookPages = {
-    width: 1000,
-    height: 400,
-    maxShadowOpacity: 0.5,
+
+const renderSketchbookItems = (item) => {
+    const sketchbookItemsLength = Object.keys(sketchbookItems).length;
+    for (let i = 1; i <= sketchbookItemsLength; i++) {
+        createSketchbookHtml(item[i].imageLeft, item[i].imageRight, item[i].titleLeft, item[i].titleRight);
+    }
+    addJsClass();
+};
+
+// Add active class to first Sketchbook carousel item only
+const addJsClass = () => {
+    const spinnerFace = document.querySelector('.spinner--left').firstElementChild;
+    spinnerFace.classList.add('js-active');
+};
+
+const createSketchbookHtml = (imgLeft, imgRight, titleLeft, titleRight) => {
+    const markup = `
+    <div class="spinner__face">
+        <div class="content">
+            <div class="content__left">
+                <img src="${imgLeft}" alt="${titleLeft}" />
+            </div>
+            <div class="content__right">
+                <img src="${imgRight}" alt="${titleRight}" />
+            </div>
+        </div>
+    </div>
+    `;
+    document.querySelector('.spinner--left').insertAdjacentHTML('beforeend', markup);
 };
 
 /*
-document.addEventListener('DOMContentLoaded', function () {
-    const sketchbook = document.getElementById('sketchbook__book');
-    //const pageFlip = new PageFlip(sketchbook, bookPages);
-    const pageFlip = new PageFlip(sketchbook, {
-        width: 1000,
-        height: 400,
-        maxShadowOpacity: 0.5,
-    });
-    pageFlip.loadFromImages(['img/Frontpage2.jpg', 'img/Frontpage3.jpg', 'img/Frontpage4.jpg', 'img/Frontpage5.jpg']);
-});
+const preloadSketchbookImages = (imgLeft, imgRight) => {
+    const markup = `
+    <img src="${imgLeft}"/>
+    <img src="${imgRight}"/>
+    `;
+    document.querySelector('.sketchbook__loader').insertAdjacentHTML('beforeend', markup);
+};
 */
+
+let activeIndex = 0;
+let limit = 0;
+let disabled = false;
+let $stage;
+let $controls;
+let canvas = false;
+
+const SPIN_FORWARD_CLASS = 'js-spin-fwd';
+const SPIN_BACKWARD_CLASS = 'js-spin-bwd';
+const DISABLE_TRANSITIONS_CLASS = 'js-transitions-disabled';
+const SPIN_DUR = 1000;
+
+const appendControls = () => {
+    for (let i = 0; i < limit; i++) {
+        $('.carousel__control').append(`<a href="#" data-index="${i}"></a>`);
+    }
+    let height = $('.carousel__control').children().last().outerHeight();
+
+    $('.carousel__control').css('height', 30 + limit * height);
+    $controls = $('.carousel__control').children();
+    $controls.eq(activeIndex).addClass('active');
+};
+
+const setIndexes = () => {
+    $('.spinner')
+        .children()
+        .each((i, el) => {
+            $(el).attr('data-index', i);
+            limit++;
+        });
+};
+
+const duplicateSpinner = () => {
+    const $el = $('.spinner').parent();
+    const html = $('.spinner').parent().html();
+    $el.append(html);
+    $('.spinner').last().addClass('spinner--right');
+    $('.spinner--right').removeClass('spinner--left');
+};
+
+const paintFaces = () => {
+    $('.spinner__face').each((i, el) => {
+        const $el = $(el);
+        let color = $(el).attr('data-bg');
+        $el.children().css('backgroundImage', `url(${getBase64PixelByColor(color)})`);
+    });
+};
+
+const getBase64PixelByColor = (hex) => {
+    if (!canvas) {
+        canvas = document.createElement('canvas');
+        canvas.height = 1;
+        canvas.width = 1;
+    }
+    if (canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = hex;
+        ctx.fillRect(0, 0, 1, 1);
+        return canvas.toDataURL();
+    }
+    return false;
+};
+
+const prepareDom = () => {
+    setIndexes();
+    paintFaces();
+    duplicateSpinner();
+    appendControls();
+};
+
+const spin = (inc = 1) => {
+    if (disabled) return;
+    if (!inc) return;
+    activeIndex += inc;
+    disabled = true;
+
+    if (activeIndex >= limit) {
+        activeIndex = 0;
+    }
+
+    if (activeIndex < 0) {
+        activeIndex = limit - 1;
+    }
+
+    const $activeEls = $('.spinner__face.js-active');
+    const $nextEls = $(`.spinner__face[data-index=${activeIndex}]`);
+    $nextEls.addClass('js-next');
+
+    if (inc > 0) {
+        $stage.addClass(SPIN_FORWARD_CLASS);
+    } else {
+        $stage.addClass(SPIN_BACKWARD_CLASS);
+    }
+
+    $controls.removeClass('active');
+    $controls.eq(activeIndex).addClass('active');
+
+    setTimeout(
+        () => {
+            spinCallback(inc);
+        },
+        SPIN_DUR,
+        inc
+    );
+};
+
+const spinCallback = (inc) => {
+    $('.js-active').removeClass('js-active');
+    $('.js-next').removeClass('js-next').addClass('js-active');
+    $stage.addClass(DISABLE_TRANSITIONS_CLASS).removeClass(SPIN_FORWARD_CLASS).removeClass(SPIN_BACKWARD_CLASS);
+
+    $('.js-active').each((i, el) => {
+        const $el = $(el);
+        $el.prependTo($el.parent());
+    });
+    setTimeout(() => {
+        $stage.removeClass(DISABLE_TRANSITIONS_CLASS);
+        disabled = false;
+    }, 100);
+};
+
+const attachListeners = () => {
+    document.onkeyup = (e) => {
+        switch (e.keyCode) {
+            case 38:
+                spin(-1);
+                break;
+            case 40:
+                spin(1);
+                break;
+        }
+    };
+
+    $controls.on('click', (e) => {
+        e.preventDefault();
+        if (disabled) return;
+        const $el = $(e.target);
+        const toIndex = parseInt($el.attr('data-index'), 10);
+        spin(toIndex - activeIndex);
+    });
+};
+
+const assignEls = () => {
+    $stage = $('.carousel__stage');
+};
+
+const init = () => {
+    assignEls();
+    prepareDom();
+    attachListeners();
+};
+
+$(() => {
+    init();
+});
+
+// Create Sketchbook items on load
+renderSketchbookItems(sketchbookItems);
+
+// TESTING
+window.sketchbookItems = sketchbookItems;
 
 /**** UPDATE FORM ****/
 /** SLIDESHOW **/
