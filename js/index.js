@@ -36,6 +36,8 @@ const elementStrings = {
     spotlightImg: 'spotlight__img',
     spotlightTitle: 'spotlight__title',
     spotlightDesc: 'spotlight__description',
+    galleryItem: 'gallery__item',
+    galleryZoom: 'gallery__zoom',
 };
 
 /**** CONTENT OBJECTS ****/
@@ -264,9 +266,28 @@ const animateNavList = () => {
     }
 };
 
+// Nav-menu event listeners
 document.getElementById('menu-open').addEventListener('click', toggleNav);
 elements.navMenuInital.addEventListener('click', toggleNav);
 document.getElementById('menu-close').addEventListener('click', closeNav);
+
+// Set all anchor links to scroll smoothly
+/*
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+*/
+
+// Close nav-menu after anchor clicked
+document.querySelectorAll(`li.${elementStrings.navMenuListItem} a`).forEach((el) => {
+    el.addEventListener('click', closeNav);
+});
 
 /**** HEADER ****/
 const scrollUp = 'scroll-up';
@@ -331,6 +352,7 @@ const createSpotlightHtml = (id, img, title, description) => {
 };
 
 /**** FOCUS ITEM ****/
+/*
 const openFocus = (e) => {
     if (e.target.matches(`.${elementStrings.spotlightZoom}, .${elementStrings.spotlightZoom} *`)) {
         // Get clicked item's img source and convert to relative path
@@ -356,6 +378,47 @@ const openFocus = (e) => {
         const focusClose = document.getElementById('focus-close');
         focusClose.addEventListener('click', closeFocus);
     }
+};
+*/
+const openFocus = (e) => {
+    // SPOTLIGHT ITEMS
+    if (e.target.matches(`.${elementStrings.spotlightZoom}, .${elementStrings.spotlightZoom} *`)) {
+        // Get clicked item's img source and convert to relative path
+        const imgSrcArr = e.target.closest(`.${elementStrings.spotlightPiece}`).firstElementChild.src.split('/');
+        const imgSrcRelative = `img/${imgSrcArr[imgSrcArr.length - 1]}`;
+
+        // Get clicked item's information from DOM
+        const pieceTitle = e.target.closest('svg').parentElement.firstElementChild.textContent;
+        const pieceDesc = e.target.closest('svg').parentElement.firstElementChild.nextElementSibling.textContent;
+
+        // Create HTML and insert into the DOM
+        createFocusHtml(imgSrcRelative, pieceTitle, pieceDesc);
+
+    // CHARITY ITEMS
+    } else if (e.target.matches(`.${elementStrings.galleryZoom}, .${elementStrings.galleryZoom} *`)) {
+        // Get clicked item's img source and convert to relative path
+        const imgSrcArr = e.target.closest(`.${elementStrings.galleryItem}`).firstElementChild.src.split('/');
+        const imgSrcRelative = `img/${imgSrcArr[imgSrcArr.length - 1]}`;
+
+        // Get clicked item's information from galleryItems object
+        const pieceID = e.target.closest('figure').classList[1].split('--')[1];
+        const { title, description } = galleryItems[pieceID - 1];
+
+        // Create HTML and insert into the DOM
+        createFocusHtml(imgSrcRelative, title, description);
+    }
+
+    // Add second class to 'focus' element to enable transition
+    const focus = document.getElementById('focus');
+    const container = document.getElementById('container');
+    requestAnimationFrame(() => {
+        focus.classList.add('appear');
+        container.classList.add('focus-active');
+    });
+
+    // Add event listener to be able to close 'focus'
+    const focusClose = document.getElementById('focus-close');
+    focusClose.addEventListener('click', closeFocus);
 };
 
 const closeFocus = () => {
@@ -396,6 +459,7 @@ const createFocusHtml = (img, title, desc) => {
 renderSpotlightItems(spotlightItems);
 
 /**** TESTING ****/
+/*
 function noBoxShadow() {
     for (let i = 0; i < 3; i++) {
         const spots = document.querySelectorAll('.spotlight__piece');
@@ -403,6 +467,7 @@ function noBoxShadow() {
     }
 }
 noBoxShadow();
+*/
 
 // Assign event listeners to all spotlight elements
 const spotlightElements = document.querySelectorAll(`.${elementStrings.spotlightPiece}`);
@@ -422,6 +487,9 @@ const createGalleryHtml = (id, img, title) => {
     const markup = `
     <figure class="gallery__item gallery__item--${id}">
         <img src="${img}" alt="${title}" class="gallery__img">
+        <svg class="gallery__zoom">
+            <use xlink:href="img/sprite.svg#icon-plus"></use>
+        </svg>
     </figure>
     `;
     document.querySelector('.gallery__items').insertAdjacentHTML('beforeend', markup);
@@ -429,6 +497,12 @@ const createGalleryHtml = (id, img, title) => {
 
 // Create Gallery items on load
 renderGalleryItems(galleryItems);
+
+// Add event listeners to all gallery items
+const galleryZooms = document.querySelectorAll('.gallery__zoom');
+galleryZooms.forEach((el) => {
+    el.addEventListener('click', openFocus);
+});
 
 /**** SKETCHBOOK ****/
 
