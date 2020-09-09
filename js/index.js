@@ -118,7 +118,7 @@ const spotlightItems = {
     8: {
         id: 'spotlight-9',
         portrait: false,
-        img: 'img/yubari.jpg',
+        img: 'img/Yubari.jpg',
         title: 'Yubari',
         client: 'Self Initiated',
         description:
@@ -288,25 +288,25 @@ const galleryItems = {
 };
 
 const sketchbookItems = {
-    1: {
+    0: {
         imageLeft: 'img/Kiku.jpg',
         titleLeft: 'Sketchbook Page 1',
         imageRight: 'img/Nomu.jpg',
         titleRight: 'Sketchbook Page 2'
     },
-    2: {
+    1: {
         imageLeft: 'img/Nomu.jpg',
         titleLeft: 'Sketchbook Page 3',
         imageRight: 'img/Love_Walk_Cafe.jpg',
         titleRight: 'Sketchbook Page 4'
     },
-    3: {
+    2: {
         imageLeft: 'img/Frontpage3.jpg',
         titleLeft: 'Sketchbook Page 5',
         imageRight: 'img/Frontpage6.jpg',
         titleRight: 'Sketchbook Page 6'
     },
-    4: {
+    3: {
         imageLeft: 'img/Love_Walk_Cafe.jpg',
         titleLeft: 'Sketchbook Page 7',
         imageRight: 'img/Gospel_Green.jpg',
@@ -553,10 +553,12 @@ const createFocusHtml = (section, portrait, img, title, client, desc) => {
 };
 
 // Create Spotlight items on load
-renderSpotlightItems(spotlightItems);
+//renderSpotlightItems(spotlightItems);
 
 /**** TESTING ****/
 /*
+
+
 function noBoxShadow() {
     for (let i = 0; i < 3; i++) {
         const spots = document.querySelectorAll('.spotlight__piece');
@@ -595,20 +597,12 @@ const createPrintHtml = (id, img, title) => {
     `;
     document.querySelector('.splide__list').insertAdjacentHTML('beforeend', markup);
 };
-renderPrintItems(printItems);
+//renderPrintItems(printItems);
 
 const printElements = document.querySelectorAll(`.${elementStrings.printItem}`);
 printElements.forEach((el) => {
     el.addEventListener('click', openFocus);
 });
-
-/*
-<div class="print__item-info">
-    <h2 class="print__item-title heading-2">${title}</h2>
-    <p class="print__item-client">${client}</p>
-    <p class="print__item-description">${desc}</p>
-</div>
-*/
 
 // Splide carousel initiation and options
 document.addEventListener('DOMContentLoaded', function () {
@@ -631,25 +625,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }).mount();
 });
 
-/*
-const printButtons = document.querySelectorAll('.print__button');
-printButtons.forEach(el => {
-    el.addEventListener('click', slideDirection);
-});
-
-const slideDirection = (el) => {
-    el.target.dataset === 'prev' ? slideTo(-1) : slideTo(1);
-}
-
-let printSlides = document.querySelectorAll('.print__item');
-const slideTo = function (direction) {
-    let i = 0;
-    i = i + direction;
-    i = Math.min(Math.max(index, 0), printSlides.length - 1);
-    printSlides[i].scrollIntoView({ behavior: 'smooth' });
-};
-*/
-
 /**** CHARITY SECTION ****/
 const renderGalleryItems = (item) => {
     const galleryItemsLength = Object.keys(galleryItems).length;
@@ -671,7 +646,7 @@ const createGalleryHtml = (id, img, title) => {
 };
 
 // Create Gallery items on load
-renderGalleryItems(galleryItems);
+//renderGalleryItems(galleryItems);
 
 // Add event listeners to all gallery items
 const galleryZooms = document.querySelectorAll('.gallery__zoom');
@@ -878,10 +853,34 @@ $(() => {
 });
 
 // Create Sketchbook items on load
-renderSketchbookItems(sketchbookItems);
+//renderSketchbookItems(sketchbookItems);
 
 // TESTING
 window.sketchbookItems = sketchbookItems;
+
+// Render items factory function -- need to test
+const renderItems = (obj) => {
+    const objLength = Object.keys(obj).length;
+    for (let i = 0; i < objLength; i++) {
+        if (obj === spotlightItems) {
+            const { id, img, title, client } = obj[i];
+            createSpotlightHtml(id, img, title, client); 
+        } else if (obj === printItems) {
+            const { id, img, title, client, description } = obj[i];
+            createPrintHtml(id, img, title, client, description);
+        } else if (obj === galleryItems) {
+            const { id, img, title } = obj[i];
+            createGalleryHtml(id, img, title);
+        } else if (obj === sketchbookItems) {
+            const { imageLeft, imageRight, titleLeft, titleRight } = obj[i];
+            createSketchbookHtml(imageLeft, imageRight, titleLeft, titleRight);
+        }
+    }
+};
+const sectionContent = [spotlightItems, printItems, galleryItems, sketchbookItems];
+sectionContent.forEach(obj => {
+    renderItems(obj);
+});
 
 /**** UPDATE FORM ****/
 /** SLIDESHOW **/
