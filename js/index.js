@@ -24,7 +24,7 @@ const elements = {
     headerSlides: document.querySelector('.header__slideshow-slides'),
     headerSlideshowDots: document.querySelector('.header__slideshow-dots'),
     spotlightPieces: document.querySelector('.spotlight__pieces'),
-    spotlightPiece: document.querySelector('.spotlight__piece'),
+    spotlightPiece: document.querySelector('.spotlight__piece')
 };
 
 const elementStrings = {
@@ -36,180 +36,282 @@ const elementStrings = {
     spotlightImg: 'spotlight__img',
     spotlightTitle: 'spotlight__title',
     spotlightDesc: 'spotlight__description',
+    printItem: 'print__item',
+    printZoom: 'print__zoom',
     galleryItem: 'gallery__item',
-    galleryZoom: 'gallery__zoom',
+    galleryZoom: 'gallery__zoom'
 };
 
 /**** CONTENT OBJECTS ****/
 const spotlightItems = {
     0: {
         id: 'spotlight-1',
-        img: 'img/Frontpage1.jpg',
-        title: 'Spotlight Piece 1',
-        description: 'Spotlight Piece 1',
+        portrait: false,
+        img: 'img/Love_Walk_Cafe.jpg',
+        title: 'Love Walk Cafe',
+        client: 'Client - Camberwell Arts Group',
+        description:
+            'Contribution to the Camberwell Arts Group, used on local banners as part of Camberwell’s new identity and branding.\nImage depicts Love Walk Cafe.'
     },
     1: {
         id: 'spotlight-2',
-        img: 'img/Frontpage2.jpg',
-        title: 'Spotlight Piece 2',
-        description: 'Spotlight Piece 2',
+        portrait: false,
+        img: 'img/Kiku.jpg',
+        title: '‘Kiku’ bottle label',
+        client: 'Client - Kanpai Saké Brewery',
+        description:
+            'Sumo bottle label design for Kanpai Saké Brewery’s limited edition range.\nForms part of a ‘triptych’ of labels adapting elements of Peckham with traditional/well known Japanese concepts.'
     },
     2: {
         id: 'spotlight-3',
+        portrait: false,
         img: 'img/Frontpage3.jpg',
-        title: 'Spotlight Piece 3',
-        description: 'Spotlight Piece 3',
+        title: '‘Miru’ bottle label',
+        client: 'Client - Kanpai Saké Brewery',
+        description:
+            'Samurai bottle label design for Kanpai Saké Brewey’s limited edition range.\nForms part of a ‘triptych’ of labels adapting elements of Peckham with traditional/well known Japanese concepts.'
     },
     3: {
         id: 'spotlight-4',
-        img: 'img/Frontpage4.jpg',
-        title: 'Spotlight Piece 4',
-        description: 'Spotlight Piece 4',
+        portrait: false,
+        img: 'img/Nomu.jpg',
+        title: '‘Nomu’ bottle label',
+        client: 'Client - Kanpai Saké Brewery',
+        description:
+            'Geisha bottle label design for Kanpai Saké Brewery’s limited edition range.\nForms part of a ‘triptych’ of labels adapting elements of Peckham with traditional/well known Japanese concepts.'
     },
     4: {
         id: 'spotlight-5',
-        img: 'img/Frontpage5.jpg',
-        title: 'Spotlight Piece 5',
-        description: 'Spotlight Piece 5',
+        portrait: true,
+        img: 'img/Brixton.jpg',
+        title: 'Brixton',
+        client: 'Client - Maison Des Languages',
+        description:
+            'Images for Maison Des Languages’ language book for French students studying English.\nForms part of an exercise in a comic book format.'
     },
     5: {
         id: 'spotlight-6',
+        portrait: true,
         img: 'img/Frontpage6.jpg',
-        title: 'Spotlight Piece 6',
-        description: 'Spotlight Piece 6',
+        title: 'Tombstone Transaction - Republic of Cyprus',
+        client: 'Client - Citi',
+        description:
+            'Poster design for Citi group to commemorate an agreement with the Government of Cyprus, commissioned by the French embassy.'
     },
     6: {
         id: 'spotlight-7',
-        img: 'img/Nouveau_web.jpg',
-        title: 'Spotlight Piece 7',
-        description: 'Spotlight Piece 7',
+        portrait: true,
+        img: 'img/Citi_Telefonica.jpg',
+        title: 'Tombstone Transaction - Telefonica',
+        client: 'Client - Citi',
+        description:
+            'Poster design for Citi group to commemorate an agreement with Telefonica, featuring an ‘uncle Sam’ style figure. '
     },
     7: {
         id: 'spotlight-8',
-        img: 'img/vacancysubmissionweb.jpg',
-        title: 'Spotlight Piece 8',
-        description: 'Spotlight Piece 8',
+        portrait: false,
+        img: 'img/Gospel_Green.jpg',
+        title: 'Bottle Label Design',
+        client: 'Unused',
+        description: 'Unused concept for Gospel Green Cider.'
     },
     8: {
         id: 'spotlight-9',
-        img: 'img/WillGraham.jpg',
-        title: 'Spotlight Piece 9',
-        description: 'Spotlight Piece 9',
+        portrait: false,
+        img: 'img/yubari.jpg',
+        title: 'Yubari',
+        client: 'Self Initiated',
+        description:
+            'Self initiated piece from a visit to Northern Japan’s Yubari, a former mining town that very much echoes the same issues faced by North East England.\nIt went on to be shortlisted and then a winner of Hire an Illustrator’s Showcase 100, and was exhibited at the Framer’s Gallery in London, 2015.'
     },
+    9: {
+        id: 'spotlight-10',
+        portrait: true,
+        img: 'img/WillGraham.jpg',
+        title: 'Will Graham',
+        client: 'Self Initiated - Fan Art',
+        description: 'Born from a love of the Hannibal drama.'
+    },
+    10: {
+        id: 'spotlight-11',
+        portrait: false,
+        img: 'img/Lumley_Castle.jpg',
+        title: 'Lumley Castle',
+        client: 'Private Commission',
+        description: 'Commissioned for an 80th birthday gift.'
+    }
+};
+
+const printItems = {
+    0: {
+        id: 'print-1',
+        portrait: true,
+        img: 'img/Print1.jpg',
+        title: 'Cathryn',
+        client: 'Self Initiated',
+        description: 'An illustration referencing Emilé Zola’s work ‘Germinal’ Woodcut.'
+    },
+    1: {
+        id: 'print-2',
+        portrait: true,
+        img: 'img/Print2.jpg',
+        title: '‘Tama’',
+        client: 'Bar Fujita, Sapporo',
+        description: 'Super Soft Lino'
+    },
+    2: {
+        id: 'print-3',
+        portrait: true,
+        img: 'img/Print3.jpg',
+        title: '‘Coran’',
+        client: 'Bar Fujita, Sapporo',
+        description: 'Super Soft Lino'
+    },
+    3: {
+        id: 'print-4',
+        portrait: true,
+        img: 'img/Print4.jpg',
+        title: '‘Buran’',
+        client: 'Bar Fujita, Sapporo',
+        description: 'Super Soft Lino'
+    },
+    4: {
+        id: 'print-5',
+        portrait: true,
+        img: 'img/Print5.jpg',
+        title: '‘Nalow’',
+        client: 'Bar Fujita, Sapporo',
+        description: 'Super Soft Lino'
+    }
 };
 
 const galleryItems = {
     0: {
         id: '1',
-        img: 'img/7_Postcard_Front.jpg',
+        portrait: false,
+        img: 'img/Charity1.jpg',
         title: 'Charity Piece 1',
-        description: 'Charity Piece 1',
+        description: 'Charity Piece 1'
     },
     1: {
         id: '2',
-        img: 'img/9_Postcard_Front.jpg',
+        portrait: true,
+        img: 'img/Charity2.jpg',
         title: 'Charity Piece 2',
-        description: 'Charity Piece 2',
+        description: 'Charity Piece 2'
     },
     2: {
         id: '3',
-        img: 'img/11_Postcard_Front.jpg',
+        portrait: true,
+        img: 'img/Charity3.jpg',
         title: 'Charity Piece 3',
-        description: 'Charity Piece 3',
+        description: 'Charity Piece 3'
     },
     3: {
         id: '4',
-        img: 'img/16_Postcard_Front.jpg',
+        portrait: true,
+        img: 'img/Charity4.jpg',
         title: 'Charity Piece 4',
-        description: 'Charity Piece 4',
+        description: 'Charity Piece 4'
     },
     4: {
         id: '5',
-        img: 'img/2020_1.jpg',
+        portrait: true,
+        img: 'img/Charity5.jpg',
         title: 'Charity Piece 5',
-        description: 'Charity Piece 5',
+        description: 'Charity Piece 5'
     },
     5: {
         id: '6',
-        img: 'img/2020_7.jpg',
+        portrait: true,
+        img: 'img/Charity6.jpg',
         title: 'Charity Piece 6',
-        description: 'Charity Piece 6',
+        description: 'Charity Piece 6'
     },
+    6: {
+        id: '7',
+        portrait: true,
+        img: 'img/Charity7.jpg',
+        title: 'Charity Piece 7',
+        description: 'Charity Piece 7'
+    }
+    /*
     6: {
         id: '7',
         img: 'img/Nouveau_web.jpg',
         title: 'Charity Piece 7',
-        description: 'Charity Piece 7',
+        description: 'Charity Piece 7'
     },
     7: {
         id: '8',
         img: 'img/Nouveau_web.jpg',
         title: 'Charity Piece 8',
-        description: 'Charity Piece 8',
+        description: 'Charity Piece 8'
     },
     8: {
         id: '9',
         img: 'img/Nouveau_web.jpg',
         title: 'Charity Piece 9',
-        description: 'Charity Piece 9',
+        description: 'Charity Piece 9'
     },
     9: {
         id: '10',
         img: 'img/Nouveau_web.jpg',
         title: 'Charity Piece 10',
-        description: 'Charity Piece 10',
+        description: 'Charity Piece 10'
     },
     10: {
         id: '11',
         img: 'img/Nouveau_web.jpg',
         title: 'Charity Piece 11',
-        description: 'Charity Piece 11',
+        description: 'Charity Piece 11'
     },
     11: {
         id: '12',
         img: 'img/Nouveau_web.jpg',
         title: 'Charity Piece 12',
-        description: 'Charity Piece 12',
+        description: 'Charity Piece 12'
     },
     12: {
         id: '13',
         img: 'img/Nouveau_web.jpg',
         title: 'Charity Piece 13',
-        description: 'Charity Piece 13',
+        description: 'Charity Piece 13'
     },
     13: {
         id: '14',
         img: 'img/Nouveau_web.jpg',
         title: 'Charity Piece 14',
-        description: 'Charity Piece 14',
-    },
+        description: 'Charity Piece 14'
+    }
+    */
 };
 
 const sketchbookItems = {
     1: {
-        imageLeft: 'img/Frontpage1.jpg',
+        imageLeft: 'img/Kiku.jpg',
         titleLeft: 'Sketchbook Page 1',
-        imageRight: 'img/Frontpage2.jpg',
-        titleRight: 'Sketchbook Page 2',
+        imageRight: 'img/Nomu.jpg',
+        titleRight: 'Sketchbook Page 2'
     },
     2: {
-        imageLeft: 'img/Frontpage3.jpg',
+        imageLeft: 'img/Nomu.jpg',
         titleLeft: 'Sketchbook Page 3',
-        imageRight: 'img/Frontpage4.jpg',
-        titleRight: 'Sketchbook Page 4',
+        imageRight: 'img/Love_Walk_Cafe.jpg',
+        titleRight: 'Sketchbook Page 4'
     },
     3: {
-        imageLeft: 'img/Frontpage5.jpg',
+        imageLeft: 'img/Frontpage3.jpg',
         titleLeft: 'Sketchbook Page 5',
         imageRight: 'img/Frontpage6.jpg',
-        titleRight: 'Sketchbook Page 6',
+        titleRight: 'Sketchbook Page 6'
     },
     4: {
-        imageLeft: 'img/Frontpage7.jpg',
+        imageLeft: 'img/Love_Walk_Cafe.jpg',
         titleLeft: 'Sketchbook Page 7',
-        imageRight: 'img/Nouveau_web.jpg',
-        titleRight: 'Sketchbook Page 8',
-    },
+        imageRight: 'img/Gospel_Green.jpg',
+        titleRight: 'Sketchbook Page 8'
+    }
 };
 
 /** NAVIGATION MENU **/
@@ -267,8 +369,10 @@ const animateNavList = () => {
 };
 
 // Nav-menu event listeners
-document.getElementById('menu-open').addEventListener('click', toggleNav);
-elements.navMenuInital.addEventListener('click', toggleNav);
+const navEventListeners = ['#menu-open', '.header__logo', '.nav-menu__initial'];
+navEventListeners.forEach((el) => {
+    document.querySelector(`${el}`).addEventListener('click', toggleNav);
+});
 document.getElementById('menu-close').addEventListener('click', closeNav);
 
 // Set all anchor links to scroll smoothly
@@ -331,17 +435,17 @@ const renderSpotlightItems = (item) => {
     // Use 'keys' function to calculate length of an object
     const spotlightItemsLength = Object.keys(spotlightItems).length;
     for (let i = 0; i < spotlightItemsLength; i++) {
-        createSpotlightHtml(item[i].id, item[i].img, item[i].title, item[i].description);
+        createSpotlightHtml(item[i].id, item[i].img, item[i].title, item[i].client);
     }
 };
 
-const createSpotlightHtml = (id, img, title, description) => {
+const createSpotlightHtml = (id, img, title, client) => {
     const markup = `
     <div class="spotlight__piece" id="${id}">
         <img src="${img}" class="spotlight__img" alt="${title}">
         <div class="spotlight__piece-info">
-            <h2 class="spotlight__title heading-4">${title}</h2>
-            <p class="spotlight__description">${description}</p>
+            <h2 class="spotlight__title heading-4">${maxStrLength(title)}</h2>
+            <p class="spotlight__client">${client}</p>
             <svg class="spotlight__zoom">
                 <use xlink:href="img/sprite.svg#icon-plus"></use>
             </svg>
@@ -351,61 +455,52 @@ const createSpotlightHtml = (id, img, title, description) => {
     elements.spotlightPieces.insertAdjacentHTML('beforeend', markup);
 };
 
-/**** FOCUS ITEM ****/
-/*
-const openFocus = (e) => {
-    if (e.target.matches(`.${elementStrings.spotlightZoom}, .${elementStrings.spotlightZoom} *`)) {
-        // Get clicked item's img source and convert to relative path
-        const imgSrcArr = e.target.closest(`.${elementStrings.spotlightPiece}`).firstElementChild.src.split('/');
-        const imgSrcRelative = `img/${imgSrcArr[imgSrcArr.length - 1]}`;
-
-        // Get clicked item's information
-        const pieceTitle = e.target.closest('svg').parentElement.firstElementChild.textContent;
-        const pieceDesc = e.target.closest('svg').parentElement.firstElementChild.nextElementSibling.textContent;
-
-        // Create HTML and insert into the DOM
-        createFocusHtml(imgSrcRelative, pieceTitle, pieceDesc);
-
-        // Add second class to 'focus' element to enable transition
-        const focus = document.getElementById('focus');
-        const container = document.getElementById('container');
-        requestAnimationFrame(() => {
-            focus.classList.add('appear');
-            container.classList.add('focus-active');
-        });
-
-        // Add event listener to be able to close 'focus'
-        const focusClose = document.getElementById('focus-close');
-        focusClose.addEventListener('click', closeFocus);
+const maxStrLength = (title, limit = 19) => {
+    const newStr = [];
+    if (title.length > limit) {
+        title.split(' ').reduce((acc, cur) => {
+            if (acc + cur.length <= limit) {
+                newStr.push(cur);
+            }
+            return acc + cur.length;
+        }, 0);
+        return `${newStr.join(' ')} ...`;
     }
+    return title;
 };
-*/
+
+/**** FOCUS ITEM ****/
 const openFocus = (e) => {
     // SPOTLIGHT ITEMS
     if (e.target.matches(`.${elementStrings.spotlightZoom}, .${elementStrings.spotlightZoom} *`)) {
-        // Get clicked item's img source and convert to relative path
-        const imgSrcArr = e.target.closest(`.${elementStrings.spotlightPiece}`).firstElementChild.src.split('/');
-        const imgSrcRelative = `img/${imgSrcArr[imgSrcArr.length - 1]}`;
+        // Get clicked item's ID from DOM
+        const pieceID = e.target.closest('div').parentElement.id.split('-')[1];
 
-        // Get clicked item's information from DOM
-        const pieceTitle = e.target.closest('svg').parentElement.firstElementChild.textContent;
-        const pieceDesc = e.target.closest('svg').parentElement.firstElementChild.nextElementSibling.textContent;
+        // Access the relevant information in the spotlightItems object
+        const { portrait, img, title, client, description } = spotlightItems[pieceID - 1];
 
         // Create HTML and insert into the DOM
-        createFocusHtml(imgSrcRelative, pieceTitle, pieceDesc);
+        createFocusHtml('show-client', portrait, img, title, client, description);
 
-    // CHARITY ITEMS
+        // CHARITY ITEMS
     } else if (e.target.matches(`.${elementStrings.galleryZoom}, .${elementStrings.galleryZoom} *`)) {
-        // Get clicked item's img source and convert to relative path
-        const imgSrcArr = e.target.closest(`.${elementStrings.galleryItem}`).firstElementChild.src.split('/');
-        const imgSrcRelative = `img/${imgSrcArr[imgSrcArr.length - 1]}`;
-
-        // Get clicked item's information from galleryItems object
+        // Get clicked item's ID from DOM
         const pieceID = e.target.closest('figure').classList[1].split('--')[1];
-        const { title, description } = galleryItems[pieceID - 1];
+
+        // Access the relevant information in the galleryItems object
+        const { portrait, img, title, description } = galleryItems[pieceID - 1];
 
         // Create HTML and insert into the DOM
-        createFocusHtml(imgSrcRelative, title, description);
+        createFocusHtml('gallery', portrait, img, title, description);
+    } else if (e.target.matches(`.${elementStrings.printZoom}, .${elementStrings.printZoom} *`)) {
+        // Get clicked item's ID from DOM
+        const pieceID = e.target.closest('div').id.split('-')[1];
+
+        // Access the relevant information in the galleryItems object
+        const { portrait, img, title, client, description } = printItems[pieceID - 1];
+
+        // Create HTML and insert into the DOM
+        createFocusHtml('show-client', portrait, img, title, client, description);
     }
 
     // Add second class to 'focus' element to enable transition
@@ -436,17 +531,19 @@ const closeFocus = () => {
     container.classList.remove('focus-active');
 };
 
-const createFocusHtml = (img, title, desc) => {
+const createFocusHtml = (section, portrait, img, title, client, desc) => {
+    if (desc === undefined) desc = client;
     const markup = `
-    <div class="focus" id="focus">
+    <div class="focus ${portrait === true ? 'focus--portrait' : ''}" id="focus">
         <div class="focus__close">
             <img src="img/close.png" class="focus__close-icon" id="focus-close" alt="Close">
         </div>
-        <div class="focus__img-wrapper">
+        <div class="focus__img-wrapper ${portrait === true ? 'focus__img-wrapper--portrait' : ''}">
             <img src="${img}" class="focus__img" alt="${title}">
         </div>
-        <div class="focus__piece-info">
+        <div class="focus__piece-info ${portrait === true ? 'focus__piece-info--portrait' : ''}">
             <h2 class="focus__title heading-3">${title}</h2>
+            <p class="focus__client ${section === 'show-client' ? '' : 'focus__hide'}">${client}</p>
             <p class="focus__description">${desc}</p>
             <h3 class="focus__logo">Meroë</h3>
         </div>
@@ -474,6 +571,84 @@ const spotlightElements = document.querySelectorAll(`.${elementStrings.spotlight
 spotlightElements.forEach((el) => {
     el.addEventListener('click', openFocus);
 });
+
+/**** PRINT SECTION ****/
+const renderPrintItems = (item) => {
+    const printItemsLength = Object.keys(printItems).length;
+    for (let i = 0; i < printItemsLength; i++) {
+        const { id, img, title, client, description } = printItems[i];
+        createPrintHtml(id, img, title, client, description);
+    }
+};
+
+const createPrintHtml = (id, img, title) => {
+    const markup = `
+    <div class="splide__slide print__item">
+        <img src="${img}" alt="${title}">
+        <div class="print__item-info" id="${id}">
+            <h3 class="print__item-title heading-3">${title}</h3>
+            <svg class="print__zoom">
+                <use xlink:href="img/sprite.svg#icon-plus"></use>
+            </svg>
+        </div>
+    </div>
+    `;
+    document.querySelector('.splide__list').insertAdjacentHTML('beforeend', markup);
+};
+renderPrintItems(printItems);
+
+const printElements = document.querySelectorAll(`.${elementStrings.printItem}`);
+printElements.forEach((el) => {
+    el.addEventListener('click', openFocus);
+});
+
+/*
+<div class="print__item-info">
+    <h2 class="print__item-title heading-2">${title}</h2>
+    <p class="print__item-client">${client}</p>
+    <p class="print__item-description">${desc}</p>
+</div>
+*/
+
+// Splide carousel initiation and options
+document.addEventListener('DOMContentLoaded', function () {
+    new Splide('.splide', {
+        type: 'loop',
+        speed: 3000,
+        rewindSpeed: 1000,
+        //fixedWidth: '40rem',
+        //fixedHeight: '80vh',
+        heightRatio: 0.5,
+        autoWidth: true,
+        //trimSpace: false,
+        focus: 'center',
+        perPage: 2,
+        gap: '15rem',
+        classes: {
+            arrow : 'splide__arrow your-class-arrow print__slide-arrow',
+            page: 'splide__pagination__page print__slide-pages'
+        }
+    }).mount();
+});
+
+/*
+const printButtons = document.querySelectorAll('.print__button');
+printButtons.forEach(el => {
+    el.addEventListener('click', slideDirection);
+});
+
+const slideDirection = (el) => {
+    el.target.dataset === 'prev' ? slideTo(-1) : slideTo(1);
+}
+
+let printSlides = document.querySelectorAll('.print__item');
+const slideTo = function (direction) {
+    let i = 0;
+    i = i + direction;
+    i = Math.min(Math.max(index, 0), printSlides.length - 1);
+    printSlides[i].scrollIntoView({ behavior: 'smooth' });
+};
+*/
 
 /**** CHARITY SECTION ****/
 const renderGalleryItems = (item) => {

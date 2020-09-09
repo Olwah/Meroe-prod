@@ -4,32 +4,18 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
         <link
             href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.14/dist/css/splide.min.css">
         <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
-
         <title>Meroë</title>
     </head>
     <body>
-        <!--
-        <div class="focus" id="focus">
-            <div class="focus__close">
-                <img src="/img/close.png" class="focus__close-icon" id="focus-close" alt="Close">
-            </div>
-            <div class="focus__img-wrapper">
-                <img src="/img/Frontpage1.jpg" class="focus__img" alt="Focus Piece">
-            </div>
-            <div class="focus__piece-info">
-                <h2 class="focus__title heading-2">Insert Title</h2>
-                <p class="focus__description">Insert Description</p>
-                <h3 class="focus__logo">Meroë</h3>
-            </div>
-        </div>
-            -->
         <div class="container" id="container">
             <nav class="nav-menu">
                 <div class="nav-menu__initial">
@@ -51,6 +37,9 @@
                     <div class="header__title">
                         <div class="nav-menu__close nav-menu__translate">
                             <span class="nav-menu__scale" id="menu-close">&#8592;</span>
+                        </div>
+                        <div class="header__logo">
+                            <img src="img/logo.jpg" alt="Meroë Logo" />
                         </div>
                         <h1 class="heading-1"><span id="menu-open">M</span><a href="#">eroë</a></h1>
                     </div>
@@ -80,19 +69,38 @@
                     <div class="fade-out"></div>
                 </div>
                 <div class="spotlight__pieces">
-                    <!--    
-                    <div class="spotlight__piece" id="spotlight-1">
-                        <img src="/img/Frontpage1.jpg" class="spotlight__img" alt="Spolight Piece 1">
-                        <div class="spotlight__piece-info">
-                            <h2 class="spotlight__title heading-2">Insert Title</h2>
-                            <p class="spotlight__description">Insert Description</p>
-                            <svg class="spotlight__zoom">
-                                <use xlink:href="img/sprite.svg#icon-plus"></use>
-                            </svg>
-                        </div>
-                    </div>-->
+                    <!-- DYNAMICALLY CREATED -->
                 </div>
             </main>
+
+            <section class="print" id="print">
+                <div class="print__sidebar">
+                    <div class="print__sticky sticky heading-2">Print</div>
+                    <div class="fade-out"></div>
+                </div>
+                <div class="print__info">
+                    <!--<h2 class="print__title heading-2">Print</h2>-->
+                    <p class="print__description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi itaque voluptatem quasi
+                        totam iure! Ab consequatur nam, reprehenderit dolorum nesciunt, unde perspiciatis provident
+                        doloribus nobis ipsam sapiente laborum assumenda modi!
+                    </p>
+                </div>
+                <div class="print__items splide">
+                    <div class="splide__track">
+                        <div class="splide__list">
+                            <!-- DYNAMICALLY CREATED -->
+                            <!--<li class="splide__slide">Slide 01</li>-->
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="print__buttons">
+                    <button class="print__button print__button--left" data-prev="-1">&lt;</button>
+                    <button class="print__button print__button--right" data-next="1">&gt;</button>
+                </div>
+                -->
+            </section>
 
             <section class="gallery" id="gallery">
                 <div class="gallery__sidebar">
@@ -108,15 +116,9 @@
                     </p>
                 </div>
                 <div class="gallery__items">
-                    <!--
-                <figure class="gallery__item gallery__item--1">
-                    <img src="img/Nouveau_web.jpg" alt="Gallery image 1" class="gallery__img">
-                    <svg class="gallery__zoom">
-                        <use xlink:href="img/sprite.svg#icon-plus"></use>
-                    </svg>
-                </figure>
-                --></div>
-            </section> 
+                    <!-- DYNAMICALLY CREATED -->
+                </div>
+            </section>
 
             <section class="sketchbook" id="sketchbook">
                 <div class="sketchbook__sidebar">
@@ -131,11 +133,12 @@
                         perferendis odit quas non quo nostrum.
                     </p>
                 </div>
-                <div class="sketchbook__container" id="sketchbook__container">
+                <div class="sketchbook__book" id="sketchbook__book">
                     <div class="carousel">
                         <div class="carousel__control"></div>
                         <div class="carousel__stage">   
                             <div class="spinner spinner--left">
+                                <!-- DYNAMICALLY CREATED -->
                             <!--
                                 <div class="spinner__face js-active">
                                     <div class="content" data-type="sketch-1">
@@ -159,9 +162,7 @@
                     <div class="fade-out"></div>
                 </div>
                 <div class="about__info">
-                    <div class="about__title heading-5">
-                        Meroë is a London based illustrator and designer.
-                    </div>
+                    <div class="about__title heading-5">Meroë is a London based illustrator and designer.</div>
                     <div class="about__contact">
                         Please get in touch to discuss commissions or collaborations:
                         <a href="mailto:contact@meroedraws.com">contact@meroedraws.com</a>
@@ -182,12 +183,8 @@
                     <div class="about__awards">
                         <div class="about__heading">Awards:</div>
                         <ul class="about__award-list">
-                            <li class="about__award-item">
-                                Brill Award - Kingston University (2009)
-                            </li>
-                            <li class="about__award-item">
-                                Showcase 100 - Hire An Illustrator (2015)
-                            </li>
+                            <li class="about__award-item">Brill Award - Kingston University (2009)</li>
+                            <li class="about__award-item">Showcase 100 - Hire An Illustrator (2015)</li>
                         </ul>
                     </div>
                 </div>
@@ -205,7 +202,7 @@
                     <li class="footer__link-item heading-5"><a href="#print">Print</a></li>
                     <li class="footer__link-item heading-5"><a href="#charity">Charity</a></li>
                     <li class="footer__link-item heading-5"><a href="#sketchbook">Sketchbook</a></li>
-                    <li class="footer__link-item heading-5"><a href="#about">More info</a></li>
+                    <li class="footer__link-item heading-5"><a href="#about">About</a></li>
                 </ul>
             </footer>
             <!--
@@ -244,6 +241,6 @@
             -->
         </div>
     </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--<script src="js/index.js"></script>-->
     <script src="js/index.js"></script>
 </html>
