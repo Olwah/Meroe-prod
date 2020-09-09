@@ -553,7 +553,7 @@ const createFocusHtml = (section, portrait, img, title, client, desc) => {
 };
 
 // Create Spotlight items on load
-//renderSpotlightItems(spotlightItems);
+renderSpotlightItems(spotlightItems);
 
 /**** TESTING ****/
 /*
@@ -597,7 +597,7 @@ const createPrintHtml = (id, img, title) => {
     `;
     document.querySelector('.splide__list').insertAdjacentHTML('beforeend', markup);
 };
-//renderPrintItems(printItems);
+renderPrintItems(printItems);
 
 const printElements = document.querySelectorAll(`.${elementStrings.printItem}`);
 printElements.forEach((el) => {
@@ -619,7 +619,7 @@ document.addEventListener('DOMContentLoaded', function () {
         perPage: 2,
         gap: '15rem',
         classes: {
-            arrow : 'splide__arrow your-class-arrow print__slide-arrow',
+            arrow: 'splide__arrow your-class-arrow print__slide-arrow',
             page: 'splide__pagination__page print__slide-pages'
         }
     }).mount();
@@ -646,7 +646,7 @@ const createGalleryHtml = (id, img, title) => {
 };
 
 // Create Gallery items on load
-//renderGalleryItems(galleryItems);
+renderGalleryItems(galleryItems);
 
 // Add event listeners to all gallery items
 const galleryZooms = document.querySelectorAll('.gallery__zoom');
@@ -658,7 +658,7 @@ galleryZooms.forEach((el) => {
 
 const renderSketchbookItems = (item) => {
     const sketchbookItemsLength = Object.keys(sketchbookItems).length;
-    for (let i = 1; i <= sketchbookItemsLength; i++) {
+    for (let i = 0; i < sketchbookItemsLength; i++) {
         createSketchbookHtml(item[i].imageLeft, item[i].imageRight, item[i].titleLeft, item[i].titleRight);
     }
     addJsClass();
@@ -853,18 +853,19 @@ $(() => {
 });
 
 // Create Sketchbook items on load
-//renderSketchbookItems(sketchbookItems);
+renderSketchbookItems(sketchbookItems);
 
 // TESTING
 window.sketchbookItems = sketchbookItems;
 
+/*
 // Render items factory function -- need to test
 const renderItems = (obj) => {
     const objLength = Object.keys(obj).length;
     for (let i = 0; i < objLength; i++) {
         if (obj === spotlightItems) {
             const { id, img, title, client } = obj[i];
-            createSpotlightHtml(id, img, title, client); 
+            createSpotlightHtml(id, img, title, client);
         } else if (obj === printItems) {
             const { id, img, title, client, description } = obj[i];
             createPrintHtml(id, img, title, client, description);
@@ -878,9 +879,10 @@ const renderItems = (obj) => {
     }
 };
 const sectionContent = [spotlightItems, printItems, galleryItems, sketchbookItems];
-sectionContent.forEach(obj => {
+sectionContent.forEach((obj) => {
     renderItems(obj);
 });
+*/
 
 /**** UPDATE FORM ****/
 /** SLIDESHOW **/
