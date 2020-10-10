@@ -1,13 +1,3 @@
-/*
-import { elements, elementStrings } from './views/base';
-import { SpotlightItem, spotlightItems } from './models/Spotlight';
-import * as headerView from './views/headerView';
-import * as spotlightView from './views/spotlightView';
-import { slideshowItems } from './models/Slideshow';
-*/
-
-// TESTING
-
 /**** DOMSTRING VARIABLES ****/
 const elements = {
     container: document.querySelector('.container'),
@@ -24,7 +14,9 @@ const elements = {
     headerSlides: document.querySelector('.header__slideshow-slides'),
     headerSlideshowDots: document.querySelector('.header__slideshow-dots'),
     spotlightPieces: document.querySelector('.spotlight__pieces'),
-    spotlightPiece: document.querySelector('.spotlight__piece')
+    spotlightPiece: document.querySelector('.spotlight__piece'),
+    carouselItems: document.querySelectorAll('.splide-carousel__items'),
+    carouselZooms: document.querySelectorAll('.splide-carousel__zoom')
 };
 
 const elementStrings = {
@@ -39,7 +31,9 @@ const elementStrings = {
     printItem: 'print__item',
     printZoom: 'print__zoom',
     galleryItem: 'gallery__item',
-    galleryZoom: 'gallery__zoom'
+    galleryZoom: 'gallery__zoom',
+    carouselItem: 'splide-carousel__item',
+    carouselZoom: 'splide-carousel__zoom'
 };
 
 /**** CONTENT OBJECTS ****/
@@ -142,7 +136,7 @@ const spotlightItems = {
     }
 };
 
-const printItems = {
+var printItems = {
     0: {
         id: 'print-1',
         portrait: true,
@@ -185,132 +179,122 @@ const printItems = {
     }
 };
 
-const galleryItems = {
+var charityItems = {
     0: {
-        id: '1',
+        id: 'charity-1',
         portrait: false,
         img: 'img/Charity1.jpg',
-        title: 'Charity Piece 1',
-        description: 'Charity Piece 1'
+        title: 'The Favelas, Rio',
+        description: 'For Caroline (2018)'
     },
     1: {
-        id: '2',
+        id: 'charity-2',
         portrait: true,
         img: 'img/Charity2.jpg',
-        title: 'Charity Piece 2',
-        description: 'Charity Piece 2'
+        title: 'Joi',
+        description: 'For Tom (2018)'
     },
     2: {
-        id: '3',
+        id: 'charity-3',
         portrait: true,
         img: 'img/Charity3.jpg',
-        title: 'Charity Piece 3',
-        description: 'Charity Piece 3'
+        title: 'Greek Ruins (2018)',
+        description: ''
     },
     3: {
-        id: '4',
+        id: 'charity-4',
         portrait: true,
         img: 'img/Charity4.jpg',
-        title: 'Charity Piece 4',
-        description: 'Charity Piece 4'
+        title: 'The Thin White Duke',
+        description: 'For Peter (2018)'
     },
     4: {
-        id: '5',
+        id: 'charity-5',
         portrait: true,
         img: 'img/Charity5.jpg',
-        title: 'Charity Piece 5',
-        description: 'Charity Piece 5'
+        title: 'The Gallaghers',
+        description: 'For Faye (2020)'
     },
     5: {
-        id: '6',
+        id: 'charity-6',
         portrait: true,
         img: 'img/Charity6.jpg',
-        title: 'Charity Piece 6',
-        description: 'Charity Piece 6'
+        title: 'A charming man',
+        description: 'For Walter (2020)'
     },
     6: {
-        id: '7',
+        id: 'charity-7',
         portrait: true,
         img: 'img/Charity7.jpg',
-        title: 'Charity Piece 7',
-        description: 'Charity Piece 7'
+        title: 'Gammatron',
+        description: 'For Oli (2019)'
     }
-    /*
-    6: {
-        id: '7',
-        img: 'img/Nouveau_web.jpg',
-        title: 'Charity Piece 7',
-        description: 'Charity Piece 7'
-    },
-    7: {
-        id: '8',
-        img: 'img/Nouveau_web.jpg',
-        title: 'Charity Piece 8',
-        description: 'Charity Piece 8'
-    },
-    8: {
-        id: '9',
-        img: 'img/Nouveau_web.jpg',
-        title: 'Charity Piece 9',
-        description: 'Charity Piece 9'
-    },
-    9: {
-        id: '10',
-        img: 'img/Nouveau_web.jpg',
-        title: 'Charity Piece 10',
-        description: 'Charity Piece 10'
-    },
-    10: {
-        id: '11',
-        img: 'img/Nouveau_web.jpg',
-        title: 'Charity Piece 11',
-        description: 'Charity Piece 11'
-    },
-    11: {
-        id: '12',
-        img: 'img/Nouveau_web.jpg',
-        title: 'Charity Piece 12',
-        description: 'Charity Piece 12'
-    },
-    12: {
-        id: '13',
-        img: 'img/Nouveau_web.jpg',
-        title: 'Charity Piece 13',
-        description: 'Charity Piece 13'
-    },
-    13: {
-        id: '14',
-        img: 'img/Nouveau_web.jpg',
-        title: 'Charity Piece 14',
-        description: 'Charity Piece 14'
-    }
-    */
 };
 
 const sketchbookItems = {
     0: {
-        imageLeft: 'img/Kiku.jpg',
-        titleLeft: 'Sketchbook Page 1',
-        imageRight: 'img/Nomu.jpg',
-        titleRight: 'Sketchbook Page 2'
+        img: 'img/SketchbookFront.jpg',
+        title: 'Sketchbook Front Page'
     },
     1: {
-        imageLeft: 'img/Nomu.jpg',
-        titleLeft: 'Sketchbook Page 3',
-        imageRight: 'img/Love_Walk_Cafe.jpg',
-        titleRight: 'Sketchbook Page 4'
+        img: 'img/Sketchbook1.jpg',
+        title: 'Sketchbook Page 1'
     },
     2: {
-        imageLeft: 'img/Frontpage3.jpg',
-        titleLeft: 'Sketchbook Page 5',
-        imageRight: 'img/Frontpage6.jpg',
-        titleRight: 'Sketchbook Page 6'
+        img: 'img/Sketchbook2.jpg',
+        title: 'Sketchbook Page 2'
     },
     3: {
-        imageLeft: 'img/Love_Walk_Cafe.jpg',
-        titleLeft: 'Sketchbook Page 7',
-        imageRight: 'img/Gospel_Green.jpg',
-        titleRight: 'Sketchbook Page 8'
+        img: 'img/Sketchbook3.jpg',
+        title: 'Sketchbook Page 3'
+    },
+    4: {
+        img: 'img/Sketchbook4.jpg',
+        title: 'Sketchbook Page 4'
+    },
+    5: {
+        img: 'img/Sketchbook5.jpg',
+        title: 'Sketchbook Page 5'
+    },
+    6: {
+        img: 'img/Sketchbook6.jpg',
+        title: 'Sketchbook Page 6'
+    },
+    7: {
+        img: 'img/Sketchbook7.jpg',
+        title: 'Sketchbook Page 7'
+    },
+    8: {
+        img: 'img/Sketchbook8.jpg',
+        title: 'Sketchbook Page 8'
+    },
+    9: {
+        img: 'img/Sketchbook9.jpg',
+        title: 'Sketchbook Page 9'
+    },
+    10: {
+        img: 'img/Sketchbook10.jpg',
+        title: 'Sketchbook Page 10'
+    },
+    11: {
+        img: 'img/Sketchbook11.jpg',
+        title: 'Sketchbook Page 11'
+    },
+    12: {
+        img: 'img/Sketchbook12.jpg',
+        title: 'Sketchbook Page 12'
+    },
+    13: {
+        img: 'img/Sketchbook13.jpg',
+        title: 'Sketchbook Page 13'
+    },
+    14: {
+        img: 'img/Sketchbook14.jpg',
+        title: 'Sketchbook Page 14'
+    },
+    15: {
+        img: 'img/SketchbookBack.jpg',
+        title: 'Sketchbook Back Page'
     }
 };
 
@@ -375,19 +359,6 @@ navEventListeners.forEach((el) => {
 });
 document.getElementById('menu-close').addEventListener('click', closeNav);
 
-// Set all anchor links to scroll smoothly
-/*
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-*/
-
 // Close nav-menu after anchor clicked
 document.querySelectorAll(`li.${elementStrings.navMenuListItem} a`).forEach((el) => {
     el.addEventListener('click', closeNav);
@@ -441,17 +412,17 @@ const renderSpotlightItems = (item) => {
 
 const createSpotlightHtml = (id, img, title, client) => {
     const markup = `
-    <div class="spotlight__piece" id="${id}">
-        <img src="${img}" class="spotlight__img" alt="${title}">
-        <div class="spotlight__piece-info">
-            <h2 class="spotlight__title heading-4">${maxStrLength(title)}</h2>
-            <p class="spotlight__client">${client}</p>
-            <svg class="spotlight__zoom">
-                <use xlink:href="img/sprite.svg#icon-plus"></use>
-            </svg>
+        <div class="spotlight__piece" id="${id}">
+            <img src="${img}" class="spotlight__img" alt="${title}">
+            <div class="spotlight__piece-info">
+                <h2 class="spotlight__title heading-4">${maxStrLength(title)}</h2>
+                <p class="spotlight__client">${client}</p>
+                <svg class="spotlight__zoom">
+                    <use xlink:href="img/sprite.svg#icon-plus"></use>
+                </svg>
+            </div>
         </div>
-    </div>
-    `;
+        `;
     elements.spotlightPieces.insertAdjacentHTML('beforeend', markup);
 };
 
@@ -480,27 +451,49 @@ const openFocus = (e) => {
         const { portrait, img, title, client, description } = spotlightItems[pieceID - 1];
 
         // Create HTML and insert into the DOM
-        createFocusHtml('show-client', portrait, img, title, client, description);
+        createFocusHtml('show-client', img, title, client, description, portrait);
 
-        // CHARITY ITEMS
-    } else if (e.target.matches(`.${elementStrings.galleryZoom}, .${elementStrings.galleryZoom} *`)) {
-        // Get clicked item's ID from DOM
-        const pieceID = e.target.closest('figure').classList[1].split('--')[1];
+        /*
+            // CHARITY ITEMS -- MERGED INTO CAROUSEL
+        } else if (e.target.matches(`.${elementStrings.galleryZoom}, .${elementStrings.galleryZoom} *`)) {
+            // Get clicked item's ID from DOM
+            const pieceID = e.target.closest('figure').classList[1].split('--')[1];
 
-        // Access the relevant information in the galleryItems object
-        const { portrait, img, title, description } = galleryItems[pieceID - 1];
+            // Access the relevant information in the galleryItems object
+            const { portrait, img, title, description } = galleryItems[pieceID - 1];
 
-        // Create HTML and insert into the DOM
-        createFocusHtml('gallery', portrait, img, title, description);
-    } else if (e.target.matches(`.${elementStrings.printZoom}, .${elementStrings.printZoom} *`)) {
-        // Get clicked item's ID from DOM
+            // Create HTML and insert into the DOM
+            createFocusHtml('gallery', img, title, description, portrait);
+
+            // PRINT ITEMS -- MERGED INTO CAROUSEL
+        } else if (e.target.matches(`.${elementStrings.printZoom}, .${elementStrings.printZoom} *`)) {
+            // Get clicked item's ID from DOM
+            const pieceID = e.target.closest('div').id.split('-')[1];
+
+            // Access the relevant information in the galleryItems object
+            const { portrait, img, title, client, description } = printItems[pieceID - 1];
+
+            // Create HTML and insert into the DOM
+            createFocusHtml('show-client', img, title, client, description, portrait);
+            */
+        // CAROUSEL ITEMS
+    } else if (e.target.matches(`.${elementStrings.carouselZoom}, .${elementStrings.carouselZoom} *`)) {
+        // Get clicked item's section & ID from DOM
+        const section = e.target.closest('div').id.split('-')[0].concat('Items');
         const pieceID = e.target.closest('div').id.split('-')[1];
 
-        // Access the relevant information in the galleryItems object
-        const { portrait, img, title, client, description } = printItems[pieceID - 1];
+        // Access the relevant information in the correct object
+        const { img, title, client, description, portrait } = window[section][pieceID - 1];
 
         // Create HTML and insert into the DOM
-        createFocusHtml('show-client', portrait, img, title, client, description);
+        createFocusHtml(
+            `${section === 'printItems' ? 'show-client' : 'carousel'}`,
+            img,
+            title,
+            client,
+            description,
+            portrait
+        );
     }
 
     // Add second class to 'focus' element to enable transition
@@ -531,42 +524,29 @@ const closeFocus = () => {
     container.classList.remove('focus-active');
 };
 
-const createFocusHtml = (section, portrait, img, title, client, desc) => {
+const createFocusHtml = (section, img, title, client, desc, portrait) => {
     if (desc === undefined) desc = client;
     const markup = `
-    <div class="focus ${portrait === true ? 'focus--portrait' : ''}" id="focus">
-        <div class="focus__close">
-            <img src="img/close.png" class="focus__close-icon" id="focus-close" alt="Close">
+        <div class="focus ${portrait === true ? 'focus--portrait' : ''}" id="focus">
+            <div class="focus__close">
+                <img src="img/close.png" class="focus__close-icon" id="focus-close" alt="Close">
+            </div>
+            <div class="focus__img-wrapper ${portrait === true ? 'focus__img-wrapper--portrait' : ''}">
+                <img src="${img}" class="focus__img" alt="${title}">
+            </div>
+            <div class="focus__piece-info ${portrait === true ? 'focus__piece-info--portrait' : ''}">
+                <h2 class="focus__title heading-3">${title}</h2>
+                <p class="focus__client ${section === 'show-client' ? '' : 'focus__hide'}">${client}</p>
+                <p class="focus__description">${desc}</p>
+                <h3 class="focus__logo">Meroë</h3>
+            </div>
         </div>
-        <div class="focus__img-wrapper ${portrait === true ? 'focus__img-wrapper--portrait' : ''}">
-            <img src="${img}" class="focus__img" alt="${title}">
-        </div>
-        <div class="focus__piece-info ${portrait === true ? 'focus__piece-info--portrait' : ''}">
-            <h2 class="focus__title heading-3">${title}</h2>
-            <p class="focus__client ${section === 'show-client' ? '' : 'focus__hide'}">${client}</p>
-            <p class="focus__description">${desc}</p>
-            <h3 class="focus__logo">Meroë</h3>
-        </div>
-    </div>
-    `;
+        `;
     document.getElementById('container').insertAdjacentHTML('beforebegin', markup);
 };
 
 // Create Spotlight items on load
 renderSpotlightItems(spotlightItems);
-
-/**** TESTING ****/
-/*
-
-
-function noBoxShadow() {
-    for (let i = 0; i < 3; i++) {
-        const spots = document.querySelectorAll('.spotlight__piece');
-        spots[i].style.boxShadow = 'none';
-    }
-}
-noBoxShadow();
-*/
 
 // Assign event listeners to all spotlight elements
 const spotlightElements = document.querySelectorAll(`.${elementStrings.spotlightPiece}`);
@@ -574,404 +554,216 @@ spotlightElements.forEach((el) => {
     el.addEventListener('click', openFocus);
 });
 
-/**** PRINT SECTION ****/
-const renderPrintItems = (item) => {
-    const printItemsLength = Object.keys(printItems).length;
-    for (let i = 0; i < printItemsLength; i++) {
-        const { id, img, title, client, description } = printItems[i];
-        createPrintHtml(id, img, title, client, description);
+/**** OLD PRINT SECTION - NOW MERGED INTO CAROUSEL ****/
+/*
+    const renderPrintItems = (item) => {
+        const printItemsLength = Object.keys(printItems).length;
+        for (let i = 0; i < printItemsLength; i++) {
+            const { id, img, title, client, description } = printItems[i];
+            createPrintHtml(id, img, title, client, description);
+        }
+    };
+
+    const createPrintHtml = (id, img, title) => {
+        const markup = `
+        <div class="splide__slide print__item">
+            <img src="${img}" alt="${title}">
+            <div class="print__item-info" id="${id}">
+                <h3 class="print__item-title heading-3">${title}</h3>
+                <svg class="print__zoom">
+                    <use xlink:href="img/sprite.svg#icon-plus"></use>
+                </svg>
+            </div>
+        </div>
+        `;
+        document.querySelector('.print__list').insertAdjacentHTML('beforeend', markup);
+    };
+
+    const createPrintHtml = (id, img, title) => {
+        const markup = `
+        <div class="splide__slide carousel__item">
+            <img src="${img}" alt="${title}">
+            <div class="carousel__item-info" id="${id}">
+                <h3 class="carousel__item-title heading-3">${title}</h3>
+                <svg class="carousel__zoom">
+                    <use xlink:href="img/sprite.svg#icon-plus"></use>
+                </svg>
+            </div>
+        </div>
+        `;
+        document.querySelector('.print__list').insertAdjacentHTML('beforeend', markup);
+    };
+    renderPrintItems(printItems);
+
+    const printElements = document.querySelectorAll(`.${elementStrings.printItem}`);
+    printElements.forEach((el) => {
+        el.addEventListener('click', openFocus);
+    });
+
+    // Splide carousel initiation and options
+    document.addEventListener('DOMContentLoaded', function () {
+        new Splide('#print-splide', {
+            type: 'loop',
+            speed: 3000,
+            rewindSpeed: 1000,
+            //fixedWidth: '40rem',
+            //fixedHeight: '80vh',
+            heightRatio: 0.5,
+            autoWidth: true,
+            //trimSpace: false,
+            focus: 'center',
+            perPage: 2,
+            gap: '15rem',
+            classes: {
+                arrow: 'splide__arrow your-class-arrow print__slide-arrow',
+                page: 'splide__pagination__page print__slide-pages'
+            }
+        }).mount();
+    });
+    */
+
+/**** OLD CHARITY SECTION - GALLERY FORMAT ****/
+/*
+    const renderGalleryItems = (item) => {
+        const galleryItemsLength = Object.keys(charityItems).length;
+        for (let i = 0; i < galleryItemsLength; i++) {
+            createGalleryHtml(item[i].id, item[i].img, item[i].title);
+        }
+    };
+
+    const createGalleryHtml = (id, img, title) => {
+        const markup = `
+        <figure class="charity__item charity__item--${id.split('-')[1]}">
+            <img src="${img}" alt="${title}" class="charity__img">
+            <svg class="charity__zoom">
+                <use xlink:href="img/sprite.svg#icon-plus"></use>
+            </svg>
+        </figure>
+        `;
+        document.querySelector('.charity__items').insertAdjacentHTML('beforeend', markup);
+    };
+
+    // Create Gallery items on load
+    renderGalleryItems(charityItems);
+
+    // Add event listeners to all charity items
+    const charityZooms = document.querySelectorAll('.charity__zoom');
+    charityZooms.forEach((el) => {
+        el.addEventListener('click', openFocus);
+    });
+    */
+
+/**** CAROUSEL ****/
+const renderCarouselItems = (section, obj) => {
+    const objectLength = Object.keys(obj).length;
+    for (let i = 0; i < objectLength; i++) {
+        const { id, img, title } = obj[i];
+        createCarouselHtml(section, id, img, title);
     }
 };
 
-const createPrintHtml = (id, img, title) => {
+const createCarouselHtml = (section, id, img, title) => {
     const markup = `
-    <div class="splide__slide print__item">
-        <img src="${img}" alt="${title}">
-        <div class="print__item-info" id="${id}">
-            <h3 class="print__item-title heading-3">${title}</h3>
-            <svg class="print__zoom">
-                <use xlink:href="img/sprite.svg#icon-plus"></use>
-            </svg>
+        <div class="splide__slide splide-carousel__item ${section}__item">
+            <img src="${img}" alt="${title}">
+            <div class="splide-carousel__item-info" id="${id}">
+                <h3 class="splide-carousel__item-title heading-3">${title}</h3>
+                <svg class="splide-carousel__zoom">
+                    <use xlink:href="img/sprite.svg#icon-plus"></use>
+                </svg>
+            </div>
         </div>
-    </div>
-    `;
-    document.querySelector('.splide__list').insertAdjacentHTML('beforeend', markup);
+        `;
+    document.querySelector(`.${section}__list`).insertAdjacentHTML('beforeend', markup);
 };
-renderPrintItems(printItems);
+renderCarouselItems('print', printItems);
+renderCarouselItems('charity', charityItems);
 
-const printElements = document.querySelectorAll(`.${elementStrings.printItem}`);
-printElements.forEach((el) => {
+const carouselElements = document.querySelectorAll(`.${elementStrings.carouselItem}`);
+carouselElements.forEach((el) => {
     el.addEventListener('click', openFocus);
 });
 
-// Splide carousel initiation and options
-document.addEventListener('DOMContentLoaded', function () {
-    new Splide('.splide', {
-        type: 'loop',
-        speed: 3000,
-        rewindSpeed: 1000,
-        //fixedWidth: '40rem',
-        //fixedHeight: '80vh',
-        heightRatio: 0.5,
-        autoWidth: true,
-        //trimSpace: false,
-        focus: 'center',
-        perPage: 2,
-        gap: '15rem',
-        classes: {
-            arrow: 'splide__arrow your-class-arrow print__slide-arrow',
-            page: 'splide__pagination__page print__slide-pages'
-        }
-    }).mount();
-});
-
-/**** CHARITY SECTION ****/
-const renderGalleryItems = (item) => {
-    const galleryItemsLength = Object.keys(galleryItems).length;
-    for (let i = 0; i < galleryItemsLength; i++) {
-        createGalleryHtml(item[i].id, item[i].img, item[i].title);
+// Splide carousel options object
+const splideOptions = {
+    type: 'loop',
+    speed: 3000,
+    rewindSpeed: 1000,
+    heightRatio: 0.5,
+    autoWidth: true,
+    focus: 'center',
+    perPage: 2,
+    gap: '15rem',
+    classes: {
+        arrow: 'splide__arrow splide-carousel__slide-arrow',
+        page: 'splide__pagination__page splide-carousel__slide-pages'
     }
 };
 
-const createGalleryHtml = (id, img, title) => {
-    const markup = `
-    <figure class="gallery__item gallery__item--${id}">
-        <img src="${img}" alt="${title}" class="gallery__img">
-        <svg class="gallery__zoom">
-            <use xlink:href="img/sprite.svg#icon-plus"></use>
-        </svg>
-    </figure>
-    `;
-    document.querySelector('.gallery__items').insertAdjacentHTML('beforeend', markup);
-};
+// Splide carousel initiation
+document.addEventListener('DOMContentLoaded', function () {
+    new Splide('#print-splide', splideOptions).mount();
+});
 
-// Create Gallery items on load
-renderGalleryItems(galleryItems);
+document.addEventListener('DOMContentLoaded', function () {
+    new Splide('#charity-splide', splideOptions).mount();
+});
 
-// Add event listeners to all gallery items
-const galleryZooms = document.querySelectorAll('.gallery__zoom');
-galleryZooms.forEach((el) => {
+elements.carouselZooms.forEach((el) => {
     el.addEventListener('click', openFocus);
 });
 
 /**** SKETCHBOOK ****/
+$(window).ready(function () {
+    $('#sketchbook__magazine').turn({
+        display: 'double',
+        acceleration: true,
+        gradients: !$.isTouch,
+        elevation: 50,
+        when: {
+            turned: function (e, page) {
+                /*console.log('Current view: ', $(this).turn('view'));*/
+            }
+        }
+    });
+});
 
-const renderSketchbookItems = (item) => {
+const renderSketchbookItems = () => {
     const sketchbookItemsLength = Object.keys(sketchbookItems).length;
     for (let i = 0; i < sketchbookItemsLength; i++) {
-        createSketchbookHtml(item[i].imageLeft, item[i].imageRight, item[i].titleLeft, item[i].titleRight);
+        const { img, title} = sketchbookItems[i];
+        createSketchbookHtml(img, title);
     }
-    addJsClass();
-};
+}
 
-// Add active class to first Sketchbook carousel item only
-const addJsClass = () => {
-    const spinnerFace = document.querySelector('.spinner--left').firstElementChild;
-    spinnerFace.classList.add('js-active');
-};
-
-const createSketchbookHtml = (imgLeft, imgRight, titleLeft, titleRight) => {
+const createSketchbookHtml = (img, title) => {
     const markup = `
-    <div class="spinner__face">
-        <div class="content">
-            <div class="content__left">
-                <img src="${imgLeft}" alt="${titleLeft}" />
-            </div>
-            <div class="content__right">
-                <img src="${imgRight}" alt="${titleRight}" />
-            </div>
-        </div>
+    <div>
+        <img class="sketchbook__page" src="${img}" alt="${title}">
     </div>
     `;
-    document.querySelector('.spinner--left').insertAdjacentHTML('beforeend', markup);
+    document.getElementById('sketchbook__magazine').insertAdjacentHTML('beforeend', markup);
 };
-
-/*
-const preloadSketchbookImages = (imgLeft, imgRight) => {
-    const markup = `
-    <img src="${imgLeft}"/>
-    <img src="${imgRight}"/>
-    `;
-    document.querySelector('.sketchbook__loader').insertAdjacentHTML('beforeend', markup);
-};
-*/
-
-let activeIndex = 0;
-let limit = 0;
-let disabled = false;
-let $stage;
-let $controls;
-let canvas = false;
-
-const SPIN_FORWARD_CLASS = 'js-spin-fwd';
-const SPIN_BACKWARD_CLASS = 'js-spin-bwd';
-const DISABLE_TRANSITIONS_CLASS = 'js-transitions-disabled';
-const SPIN_DUR = 1000;
-
-const appendControls = () => {
-    for (let i = 0; i < limit; i++) {
-        $('.carousel__control').append(`<a href="#" data-index="${i}"></a>`);
-    }
-    let height = $('.carousel__control').children().last().outerHeight();
-
-    $('.carousel__control').css('height', 30 + limit * height);
-    $controls = $('.carousel__control').children();
-    $controls.eq(activeIndex).addClass('active');
-};
-
-const setIndexes = () => {
-    $('.spinner')
-        .children()
-        .each((i, el) => {
-            $(el).attr('data-index', i);
-            limit++;
-        });
-};
-
-const duplicateSpinner = () => {
-    const $el = $('.spinner').parent();
-    const html = $('.spinner').parent().html();
-    $el.append(html);
-    $('.spinner').last().addClass('spinner--right');
-    $('.spinner--right').removeClass('spinner--left');
-};
-
-const paintFaces = () => {
-    $('.spinner__face').each((i, el) => {
-        const $el = $(el);
-        let color = $(el).attr('data-bg');
-        $el.children().css('backgroundImage', `url(${getBase64PixelByColor(color)})`);
-    });
-};
-
-const getBase64PixelByColor = (hex) => {
-    if (!canvas) {
-        canvas = document.createElement('canvas');
-        canvas.height = 1;
-        canvas.width = 1;
-    }
-    if (canvas.getContext) {
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = hex;
-        ctx.fillRect(0, 0, 1, 1);
-        return canvas.toDataURL();
-    }
-    return false;
-};
-
-const prepareDom = () => {
-    setIndexes();
-    paintFaces();
-    duplicateSpinner();
-    appendControls();
-};
-
-const spin = (inc = 1) => {
-    if (disabled) return;
-    if (!inc) return;
-    activeIndex += inc;
-    disabled = true;
-
-    if (activeIndex >= limit) {
-        activeIndex = 0;
-    }
-
-    if (activeIndex < 0) {
-        activeIndex = limit - 1;
-    }
-
-    const $activeEls = $('.spinner__face.js-active');
-    const $nextEls = $(`.spinner__face[data-index=${activeIndex}]`);
-    $nextEls.addClass('js-next');
-
-    if (inc > 0) {
-        $stage.addClass(SPIN_FORWARD_CLASS);
-    } else {
-        $stage.addClass(SPIN_BACKWARD_CLASS);
-    }
-
-    $controls.removeClass('active');
-    $controls.eq(activeIndex).addClass('active');
-
-    setTimeout(
-        () => {
-            spinCallback(inc);
-        },
-        SPIN_DUR,
-        inc
-    );
-};
-
-const spinCallback = (inc) => {
-    $('.js-active').removeClass('js-active');
-    $('.js-next').removeClass('js-next').addClass('js-active');
-    $stage.addClass(DISABLE_TRANSITIONS_CLASS).removeClass(SPIN_FORWARD_CLASS).removeClass(SPIN_BACKWARD_CLASS);
-
-    $('.js-active').each((i, el) => {
-        const $el = $(el);
-        $el.prependTo($el.parent());
-    });
-    setTimeout(() => {
-        $stage.removeClass(DISABLE_TRANSITIONS_CLASS);
-        disabled = false;
-    }, 100);
-};
-
-const attachListeners = () => {
-    document.onkeyup = (e) => {
-        switch (e.keyCode) {
-            case 38:
-                spin(-1);
-                break;
-            case 40:
-                spin(1);
-                break;
-        }
-    };
-
-    $controls.on('click', (e) => {
-        e.preventDefault();
-        if (disabled) return;
-        const $el = $(e.target);
-        const toIndex = parseInt($el.attr('data-index'), 10);
-        spin(toIndex - activeIndex);
-    });
-};
-
-const assignEls = () => {
-    $stage = $('.carousel__stage');
-};
-
-const init = () => {
-    assignEls();
-    prepareDom();
-    attachListeners();
-};
-
-$(() => {
-    init();
-});
-
-// Create Sketchbook items on load
 renderSketchbookItems(sketchbookItems);
 
-// TESTING
-window.sketchbookItems = sketchbookItems;
+const sketchbookBtnPrevious = document.querySelector('.sketchbook__btn--left');
+const sketchbookBtnNext = document.querySelector('.sketchbook__btn--right');
 
-/*
-// Render items factory function -- need to test
-const renderItems = (obj) => {
-    const objLength = Object.keys(obj).length;
-    for (let i = 0; i < objLength; i++) {
-        if (obj === spotlightItems) {
-            const { id, img, title, client } = obj[i];
-            createSpotlightHtml(id, img, title, client);
-        } else if (obj === printItems) {
-            const { id, img, title, client, description } = obj[i];
-            createPrintHtml(id, img, title, client, description);
-        } else if (obj === galleryItems) {
-            const { id, img, title } = obj[i];
-            createGalleryHtml(id, img, title);
-        } else if (obj === sketchbookItems) {
-            const { imageLeft, imageRight, titleLeft, titleRight } = obj[i];
-            createSketchbookHtml(imageLeft, imageRight, titleLeft, titleRight);
-        }
+// Function & event listeners for sketchbook arrows
+const sketchbookFlipPage = (e) => {
+    if (e.target.matches(`.sketchbook__btn--left, .sketchbook__btn--left *`)) {
+        $('#sketchbook__magazine').turn('previous');
+    }
+    if (e.target.matches(`.sketchbook__btn--right, .sketchbook__btn--right *`)) {
+        $('#sketchbook__magazine').turn('next');
     }
 };
-const sectionContent = [spotlightItems, printItems, galleryItems, sketchbookItems];
-sectionContent.forEach((obj) => {
-    renderItems(obj);
+
+[sketchbookBtnNext, sketchbookBtnPrevious].forEach((el) => {
+    el.addEventListener('click', sketchbookFlipPage);
 });
-*/
 
-/**** UPDATE FORM ****/
-/** SLIDESHOW **/
-/*
-const slideshowImg = document.getElementById('slideshow-img');
-slideshowImg.addEventListener('change', getSlides);
-
-function getSlides() {
-    if (slideshowImg.options[slideshowImg.selectedIndex].value === "0") {
-        document.querySelector('.update__slideshow-info').classList.remove('active');
-    } else {
-        document.querySelector('.update__slideshow-info').classList.add('active');
-    };
-};
-
-const whatTask = document.getElementById('whatTask');
-whatTask.addEventListener('change', getTask);
-
-function getTask() {
-    if (whatTask.options[whatTask.selectedIndex].value === "0") {
-        document.querySelector('.update__slideshow-info').classList.remove('active');
-        document.querySelector('.update__edit-slide').classList.add('active');
-
-        document.getElementById('update__new-btn').classList.remove('active');
-        document.getElementById('update__edit-btn').classList.add('active');
-
-    } else if (whatTask.options[whatTask.selectedIndex].value === "1") {
-        document.querySelector('.update__edit-slide').classList.remove('active');
-        document.querySelector('.update__slideshow-info').classList.add('active');
-
-        document.getElementById('update__edit-btn').classList.remove('active');
-        document.getElementById('update__new-btn').classList.add('active');
-    };
-};
-
-
-const updateSlide = () => {
-    if (slideshowImg.options[slideshowImg.selectedIndex].value !== "0") {
-        // Determine which slide is selected
-        const slideIndex = parseInt(slideshowImg.options[slideshowImg.selectedIndex].value);
-        
-        // Grab the values from inputs
-        const imgPath = 'img/';
-        const imgValue = document.getElementById('imgSrc').value;
-        const imgSrc = imgPath.concat(imgValue);
-        const imgTitle = document.getElementById('imgTitle').value;
-        //const imgFile = document.getElementById('imgFile');
-        
-        // Update values in slideshowItems object
-        slideshowItems[slideIndex - 1].img = imgSrc;
-        slideshowItems[slideIndex - 1].title = imgTitle;
-    }
-    return imgSrc, imgTitle;
-};
-
-const slideshowItemsLength = Object.keys(slideshowItems).length;
-
-const newSlide = () => {
-    // Grab the values from inputs
-    const imgPath = 'img/';
-    const imgValue = document.getElementById('imgSrc').value;
-    const imgSrc = imgPath.concat(imgValue);
-    const imgTitle = document.getElementById('imgTitle').value;
-    //const imgFile = document.getElementById('imgFile');
-
-    // Add values to the slideshowItems object
-    const addKey = {
-        // Square brackets use the computed value for an object key e.g "3"
-        [slideshowItemsLength]: {
-            img: imgSrc,
-            title: imgTitle
-        }
-    };
-    const updateSlideshowItems = Object.assign({}, slideshowItems, addKey);
-    
-    return updateSlideshowItems;
-};
-
-// Need to add this to the render slideshow items function if you end up merging everything into a single js file
-const createSlideOption = () => {
-    const markup = `<option value="${slideshowItemsLength}">Slide ${slideshowItemsLength}</option>`;
-    document.getElementById('slideshow-img').insertAdjacentHTML('beforeend', markup);
-};
-
-// Event listener for update slideshow button
-const slideshowUpdate = document.getElementById('update__edit-btn');
-slideshowUpdate.addEventListener('click', updateSlide);
-
-// Event listener for add new slide button
-const addSlide = document.getElementById('update__new-btn');
-addSlide.addEventListener('click', newSlide);
-*/
+$(window).bind('keydown', function (e) {
+    if (e.keyCode == 37) $('#sketchbook__magazine').turn('previous');
+    else if (e.keyCode == 39) $('#sketchbook__magazine').turn('next');
+});
